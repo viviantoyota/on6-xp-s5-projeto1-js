@@ -246,20 +246,20 @@ console.log(pessoa.apresentacao());
  /////////////////////////
 
  const pessoa2 = {
-  nome: 'Yasminn',
-  sobrenome: 'Vaz',
-  idade: 25,
-  altura: 1.62,
-  peso: 55,
+  nome: 'Vivian',
+  sobrenome: 'Toyota',
+  idade: 22,
+  altura: 1.60,
+  peso: 53,
   andando: false,
   caminhouQuantosMetros: 0,
-  fazerAniversario: () => pessoa2.idade++,
-  andar: (metrosCaminhados) => {
-    pessoa2.andando = true
-    pessoa2.caminhouQuantosMetros += metrosCaminhados
+  fazerAniversario: function () {this.idade++},
+  andar: function(metrosCaminhados) {
+    this.andando = true
+    this.caminhouQuantosMetros += metrosCaminhados
   },
-  parar : () => pessoa2.andando = false,
-  apresentacao: () => {
+  parar : function() {pessoa2.andando = false},
+  apresentacao: function() {
     
   const anos = (pessoa2.idade === 1) ? 'ano' : 'anos'
     
@@ -303,10 +303,34 @@ console.log('Classes 🆕')
 
 // Vamos criar a classe Pessoa
 
+class Pessoa {
+  constructor(name, surname, age) {
+    this.nome = name
+    this.sobrenome = surname
+    this.idade = age
+    this.andando = false
+    this.caminhouQuantosMetros = 0
+  }
+  fazerAniversario() {
+    this.idade++
+  }
+}
 
+const pessoa3 = new Pessoa('Marisa' , 'Toyota' , 50)
 
+console.log(pessoa3.nome);
 
+const {sobrenome} = pessoa3
 
+console.log(sobrenome);
+
+pessoa3.fazerAniversario()
+
+console.log(pessoa3)
+
+const pessoa4 = new Pessoa('Jessica', 'Toyota', 24 , true , 500)
+
+console.log(pessoa4);
 
 
 console.log('-----------------------------------------------------')
@@ -347,8 +371,10 @@ const numbers = [9, 2, 5]
 // Vamos importar esses dados para podermos usá-los durante nosso exercício de revisão.
 const db = require('./db')
 
+console.log(db)
 
-
+const {tias} = db
+console.log(tias);
 
 
 
@@ -361,7 +387,9 @@ console.log('Métodos iteração ')
 
 
 
+console.table(tias);
 
+console.table(lista)
 
 
 
@@ -403,6 +431,12 @@ const comparar = (a, b) => {
     return 0
   }
 }
+]
+//fica assim resumido:
+
+numbers.sort((a, b) => a - b)
+
+console.log(numbers)
 
 // Refatore a função comparar e ordene numbers em ordem crescente
 
@@ -415,7 +449,9 @@ const comparar = (a, b) => {
 // Ordene as tias por ordem decrescente de idade (a mais velha primeiro)
 
 
+tias.sort((a, b) => b.idade - a.idade)
 
+console.table(tias)
 
 
 
@@ -427,6 +463,9 @@ console.log('reduce()')
 
 // Faça a soma do array numbers
 
+const arrayReduzido = numbers.reduce((acumulador, item) => acumulador + item, 10)
+
+console.log(arrayReduzido)
 
 
 
@@ -435,7 +474,9 @@ console.log('reduce()')
 
 // Some a quantidade de netos que vovó possui.
 
+const netos = tias.reduce((acumulador, tia) => acumulador + tia.filhos, 1)
 
+console.log(netos)
 
 
 
